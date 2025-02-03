@@ -10,7 +10,14 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+		// creazione di un application context a cui devo dire quale bean utilizzare
+		AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext(MenuConfig.class);
+
+		Menu menu = (Menu) appContext.getBean("menu");
+		menu.printMenu();
+
+		// chiudo il contesto
+		appContext.close();
 	}
 
 }
